@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+<meta charset="utf-8" />
+<title>Gestion des comptes bancaires</title>
+<link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}" />
+</head>
+<body>
+<div class="col-md-6"> 
+				<div class="panel panel-primary"> 
+					<div class="panel-heading" >Opération sur le compte </div> 
+					<div class="panel-body">
+						<form th:action="@{/enregistrerOperation}" method="post"> 
+							<div> 
+								<label >Compte : </label> 
+								<input type="text" name="codeCompte" th:value="${codeCompte}"/> 
+								<!-- <label th:text="${codeCompte}"></label>  -->
+							</div> 
+							<div> 
+								<input type="radio" name="typeOperation" value="VERS" checked="checked" onchange="document .getElementById('forVirement') .style.display='none'" /> 
+								<label>Versement</label> 
+								<input type="radio" name="typeOperation" value="RET" onchange="document .getElementById('forVirement') .style.display='none'" /> 
+								<label>Retrait</label> 
+								<input type="radio" name="typeOperation" value="VIR" onchange="document .getElementById('forVirement') .style.display='block'" /> 
+								<label>Virement</label> 
+							</div> 
+							<div id="forVirement" style="display:none"> 
+								<label>Vers le compte : </label> 
+								<input type="text" name="codeCompte2" /> 
+							</div> 
+							<div> 
+								<label>Montant : </label> 
+								<input type="text" name="montant" /> 
+							</div> 
+								<span class="text-danger" th:text="${#httpServletRequest.getParameter('error')}"> </span>
+								<br /> 
+								<button type="submit" class="btn btn-primary"> Ok </button>
+						 </form>
+					</div> 
+				</div> 
+			</div> 
+			<hr/>
+			
+	
+
+<footer>
+<div class="navbar-fixed-bottom">
+<small>@Gestion de comptes</small>
+</div>
+</footer>
+</body>
+</html>
